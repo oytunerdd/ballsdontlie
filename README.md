@@ -31,6 +31,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 To see single table for localization install 
 ## npm i --global serve 
 and run 
-## ng build --localize
+## `ng build --localize`
 and run
-## serve dist/task/browser
+## `serve dist/task/browser`
