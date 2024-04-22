@@ -33,4 +33,4 @@ To see single table for localization install
 and run 
 ## ng build --localize
 and run
-## serve dist/ballsdontlie/task/browser
+## serve dist/task/browser
