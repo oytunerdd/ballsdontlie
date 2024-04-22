@@ -1,0 +1,41 @@
+<div class="modal" [style.display]="isVisible ? 'block' : 'none'">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <form [formGroup]="form" (ngSubmit)="create()">
+        <div class="form-row">
+          <div class="form-label">Name</div>
+          <input class="form-input" formControlName="name" placeholder="Required"/>
+          <div class="error-message" *ngIf="form.get('name')?.invalid && form.get('name')?.touched">Name is required</div>
+        </div>
+        <div class="form-row">
+          <div class="form-label">Surname</div>
+          <input class="form-input" formControlName="surname" placeholder="Required"/>
+          <div class="error-message" *ngIf="form.get('surname')?.invalid && form.get('surname')?.touched">Surname is required</div>
+        </div>
+        <div class="form-row">
+          <div class="form-label">Country</div>
+          <input class="form-input" formControlName="country" placeholder="Required"/>
+          <div class="error-message" *ngIf="form.get('country')?.invalid && form.get('country')?.touched">Country is required</div>
+        </div>
+        <div class="form-row">
+          <div class="form-label">Team</div>
+          <input class="form-input" formControlName="team_full_name" placeholder="Required"/>
+          <div class="error-message" *ngIf="form.get('team_full_name')?.invalid && form.get('team_full_name')?.touched">Team is required</div>
+        </div>
+        <div class="form-row">
+          <div class="form-label">Height</div>
+          <input class="form-input" formControlName="height" placeholder="Optional"/>
+        </div>
+        <div class="form-row">
+          <div class="form-label">Weight</div>
+          <input class="form-input" formControlName="weight" placeholder="Optional"/>
+        </div>
+        <div class="form-row">
+          <div class="form-label">Draft Year</div>
+          <input class="form-input" formControlName="draftYear" placeholder="Optional"/>
+        </div>
+        <button type="submit" [disabled]="form.invalid">Create</button>
+      </form>
+    </div>
+  </div>
+  

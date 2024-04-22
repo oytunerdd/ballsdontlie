@@ -1,0 +1,17 @@
+:root {
+    --background-color: #ffffff;
+    --text-color: #333333;
+  }
+  
+  .dark-mode {
+    --background-color: #333333;
+    --text-color: #ffffff;
+  }
+  
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+  
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,0 +1,6 @@
+<div class="pagination">
+    <button (click)="onPageChange(substract(currentPage,pageSize))" [disabled]="currentPage === 0" i18n="@@Previous">Previous</button>
+    <span>{{ currentPage }} of {{ totalPages }}</span>
+    <button (click)="onPageChange(sum(currentPage, pageSize))" [disabled]="currentPage === totalPages" i18n="@@Next">Next</button>
+    <span i18n="@@DisplayPageSize">Displaying {{pageSize}} per page</span>
+</div>

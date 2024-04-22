@@ -1,0 +1,55 @@
+<app-search-bar (searchQueryChange)="onSearchQueryChange($event)"></app-search-bar>
+<button (click)="toggleFilters()" i18n="@@Filters">Filters</button>
+<div class="modal" *ngIf="showFilters">
+    <div class="modal-content">
+      <!-- Your filter content goes here -->
+      <app-filter (resetedFilters)="resetFilters()" (closeModal)="toggleFilters()" (selectedFilters)="onSelectedFilters($event)" [heights]="uniqueHeights" [country]="uniqueCountry" [weights]="uniqueWeights"></app-filter>
+    </div>
+  </div><button (click)="toggleCreateModal()" i18n="@@Create">Create</button>
+<app-create [isVisible]="isCreateModalVisible" (formSubmitted)="onFormSubmitted($event);showSuccessMessage();toggleCreateModal()"></app-create>
+<app-success *ngIf="showSuccess"></app-success>
+<table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th i18n="@@FullName">Full Name</th>
+        <th i18n="@@Country">Country</th>
+        <th i18n="@@Team">Team</th>
+        <th i18n="@@Height">Height</th>
+        <th i18n="@@Weight">Weight</th>
+        <th i18n="@@College">College</th>
+        <th i18n="@@DraftYear">Draft Year</th>
+        <th i18n="@@JerseyNumber">Jersey Number</th>
+        <th i18n="@@Options">Options</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of this.filteredItems; let i = index">
+        <td>{{ row.id}}</td>
+        <td > <a href="javascript:void(0)" (click)="openEditModal(row.id)">{{row.first_name}} {{row.last_name}}</a>
+          <app-edit [rowItems]="row" [isVisible]="this.indexArray[row.id]?.visible" (formClosed)="closeEditModal(row.id)" (formSubmitted)="editItem(row,$event);showSuccessMessage();closeEditModal(row.id)"></app-edit>
+        </td>
+          
+        <td>{{ row.country }}</td>
+        <td>{{ row.team?.full_name }}</td>
+        <td>{{ row.height }}</td>
+        <td>{{ row.weight }}</td>
+        <td>{{ row.college }}</td>
+        <td>{{ row.draft_year != null ? row.draft_year : '-' }}</td>
+        <td>{{ row.jersey_number }}</td>
+        <td class="ellipsis-menu">
+            <div class="dropdown" >
+              <button (click)="toggleVisibilityEdit(row.id)" class="ellipsis-btn">&#8942;</button>
+              <div  class="dropdown-content" [style.display]="isVisible[row.id] ? 'block' : 'none'">
+                <a (click)="openEditModal(row.id);toggleVisibilityEdit(row.id)">Edit
+                </a>
+                <a href="#" (click)="deleteItem(row)">Delete</a>
+              </div>
+            </div>
+          </td>
+      </tr>
+    </tbody>
+  </table>
+  <app-pagination [currentPage]="currentPage" [totalPages]="totalPages" [pageSize]="pageSize" (pageChange)="onPageChange($event)"></app-pagination>
+  <app-page-size-input (pageSizeChange)="onPageSizeChange($event)"></app-page-size-input>
