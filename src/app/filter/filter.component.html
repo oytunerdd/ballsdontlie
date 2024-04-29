@@ -1,12 +1,22 @@
+<div class="modal">
+
+<div class="modal-content">
+<span class="close" (click)="closeFiltersModal()">&times;</span>
+<br>
+Height
 <div *ngFor="let height of heights">
     <input type="checkbox" [(ngModel)]="height.checked">{{ height.label }}
 </div>
+Country
 <div *ngFor="let coun of country">
     <input type="checkbox" [(ngModel)]="coun.checked">{{ coun.label }}
 </div>
+Weight
 <div *ngFor="let weight of weights">
     <input type="checkbox" [(ngModel)]="weight.checked">{{ weight.label }}
 </div>
 
 <button [disabled]="!anyCheckboxSelected()" (click)="emitSelectedFilters(getSelectedFilters());closeFiltersModal()">Apply Filters</button>
 <button (click)="resetFilters();closeFiltersModal()">Reset Filters</button>
+</div>
+</div>
